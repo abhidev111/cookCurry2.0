@@ -1,0 +1,171 @@
+<div class="card contentCard ">
+    <div class="d-flex flex-column align-items-center justify-content-center ">
+        <div class="">
+            <form action="">
+                <label for="Recipe_name">Enter Recipe name :</label>
+
+                <mat-form-field style="width: 100%; max-width: 900px;">
+                    <input type="search" style="font-size: large;margin-left: 10px;" matInput [matAutocomplete]="auto"
+                        [formControl]="mycontrol" [(ngModel)]="recipeName" />
+
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+
+                            {{option}}
+
+                        </mat-option>
+                    </mat-autocomplete>
+
+                </mat-form-field>
+            </form>
+
+        
+        <!-- d-------------------- -->
+        <p class="d-flex justify-content-center">
+            <button class="btn btn-warning " type="button" data-bs-toggle="collapse"
+                data-bs-target="#filtercollapseExample" aria-expanded="false" aria-controls="filtercollapseExample"
+                (click)="bringFilterData()">
+                Add filters <b>v</b>
+            </button>
+        </p>
+        <div class="collapse" id="filtercollapseExample">
+            <div class="card card-body">
+                <div class="row">
+
+                    <ng-select
+                    class="col-sm-12 col-md-4 col-lg-4"
+                    [items]="cuisineArr" 
+                    bindLabel="cuisinename" 
+                    placeholder="Select Cuisine" 
+                    appendTo="body"
+                    [multiple]="true" 
+                    [(ngModel)]="selectedCuisine">
+                </ng-select>
+                <ng-select 
+                    class="col-sm-12 col-md-4 col-lg-4"
+                    [items]="courseArr" 
+                    bindLabel="coursename" 
+                    placeholder="Select Coursee" 
+                    appendTo="body"
+                    [multiple]="true" 
+                    [(ngModel)]="selectedCourse">
+                </ng-select>
+                <ng-select 
+                    class="col-sm-12 col-md-4 col-lg-4"
+                    [items]="dietArr" 
+                    bindLabel="dietname" 
+                    placeholder="Select Diet" 
+                    appendTo="body"
+                    [multiple]="true" 
+                    [(ngModel)]="selectedDiet">
+                </ng-select>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="d-flex justify-content-center">
+            <button class="search-btn d-flex justify-content-center mt-4" (click)="getSelectedValue()">Get
+                Recipes</button>
+        </div>
+    </div>
+        <!------spinner-------->
+        <!-- <div *ngIf="loading" class="d-flex justify-content-center m-4">
+        <div class="spinner-border" role="status">
+            <span class="sr-only" id="loading"></span>
+        </div>
+        </div>
+        </div> -->
+
+        <!-- <mat-progress-spinner *ngIf="loading$ | async" [mode] ="'indeterminate'" diameter="50" color="warn"></mat-progress-spinner> -->
+        <!----spinner---->
+
+
+
+        <div class="no_data_received" *ngIf="no_data_received">
+            We are sorry..No result found for <b> {{recipeName}}</b>. <br>
+            Please check your spelling, try a more generic term, or less terms/filters.
+        </div>
+
+        <div *ngIf="got_data$.getValue()" class="container-fluid">
+
+
+            <h1 class="text-center mt-5 mb-5">Here are the recipe list</h1>
+            <div class="accordion" id="accordionExample">
+                <!--ngfor loop started for dynamic data -->
+                <div class="card mx-auto accordion-item" style="width: 50rem;
+                max-width: 100%;
+                height: auto;
+                width: auto\9;
+                margin:20px 20px;" *ngFor="let recipe of recipeData; let i = index">
+
+                    <img class="card-img-top" [src]="recipe.image_links" alt="Card image cap">
+                    <div class="card-body">
+                        <h2 class="card-title">{{recipe.recipename}}</h2>
+                        <p class="card-text">
+                            <span class="spl">{{recipe.cuisinename}}</span>
+                            <span class="spl">{{recipe.coursename}}</span>
+                            <span class="spl">{{recipe.dietname}}</span>
+                        </p>
+                    </div>
+                    <hr>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+
+
+                            <h2 class="accordion-header" [id]="'heading'+i">
+
+                                <button class="accordion-button" [ngClass]="{ 'collapsed': i != 0 }" type="button"
+                                    data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i"
+                                    aria-expanded="false" [attr.aria-controls]="'collapse'+i">
+                                    Ingredients
+                                </button>
+                            </h2>
+                            <div [id]="'collapse'+i" class="accordion-collapse collapse" [ngClass]="{ 'show': i == 0 }"
+                                [attr.aria-labelledby]="'heading'+i" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    {{recipe.ingredients}}
+                                </div>
+                            </div>
+
+
+
+                        </li>
+                        <li class="list-group-item">
+                            <h2 class="accordion-header" [id]="'heading'+i+'a'">
+
+                                <button class="accordion-button mt-3" [ngClass]="{ 'collapsed': i != 0 }" type="button"
+                                    data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i+'a'"
+                                    aria-expanded="false" [attr.aria-controls]="'collapse'+i+'a'">
+                                    Instructions
+                                </button>
+                            </h2>
+                            <div [id]="'collapse'+i+'a'" class="accordion-collapse collapse"
+                                [ngClass]="{ 'show': i == 0 }" [attr.aria-labelledby]="'heading'+i+'a'"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    {{recipe.instructions}}
+                                </div>
+                            </div>
+
+
+
+                        </li>
+
+                    </ul>
+                    <div class="card-body">
+
+                        <a [href]="recipe.url" class="card-link" target="_blank">more info</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

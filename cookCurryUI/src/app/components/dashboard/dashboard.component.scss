@@ -1,0 +1,55 @@
+*{
+    margin:0;
+    padding: 0;
+}
+#home{
+    background-color: #5e3dee;
+    color: #ffffff;
+    display: flex;
+    min-height: 100vh;
+}
+.title{
+    
+    display: flex;
+    flex-direction: column;
+  justify-content: center; 
+   
+}
+.secContainer{
+    
+}
+.img-fluid{
+    max-block-size: 600px;
+    margin-top: 20px;
+}
+.search-btn{
+    
+    display: flex;
+    align-content: center;
+    border : 2px solid white;
+    border-radius: 35px;
+    padding: 15px 25px 15px 25px;
+    width: 250px;
+    color: #5e3dee ;
+    
+}
+.search-btn:hover{
+    background-color: #5e3dee;
+    color: white;
+}
+
+
+.imageFadeIn{
+    animation: fadeInAnimation ease 4s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+  
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+}

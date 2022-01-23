@@ -1,0 +1,30 @@
+
+<div class="card " style="min-height: 100vh;background-image: url('../../../assets/images/bgImage2.jpg');background-repeat: repeat-y;
+background-size: 100%;">
+    
+    <div class="d-flex flex-column align-items-center justify-content-center m-5">
+        <!-- <h2>Happy cooking;)</h2> -->
+        <div class="card minSize" >
+            <img [src]="recipe.image_links" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h2 class="card-title">{{recipe.recipename}}</h2>
+                <p class="card-text">
+                    <span class="spl">{{recipe.cuisinename}}</span>
+                    <span class="spl">{{recipe.coursename}}</span>
+                    <span class="spl">{{recipe.dietname}}</span>
+                </p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <b class="text m-2" >Ingredients</b>
+                <li class="list-group-item">{{recipe.ingredients}}</li>
+                <b class="text m-2" >Instructions</b>
+                <li class="list-group-item">{{recipe.instructions}}</li>
+
+            </ul>
+            <div class="card-body">
+                <a href="recipe.url" class="card-link">Link to detailed recipe</a>
+
+            </div>
+        </div>
+    </div>
+</div>

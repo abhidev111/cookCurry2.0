@@ -1,0 +1,4 @@
+psql -U postgres
+\l : list all db
+\c database_name : to move to given db
+\dt :show all tables

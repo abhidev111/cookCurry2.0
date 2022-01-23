@@ -1,0 +1,17 @@
+.spl{
+    border: 2px ridge rgba(174, 35, 233, 0.6);
+    border-radius: 5px;
+    margin: 5px;
+    padding: 3px;
+    
+  }
+  .spl:hover{
+    background-color: rgba(95, 3, 134, 0.6);
+    color :azure;
+    border: 3px ridge rgba(174, 35, 233, 0.6);
+  }
+  .minSize{
+    
+    width: 80vw !important;
+    max-width: 900px !important;
+}

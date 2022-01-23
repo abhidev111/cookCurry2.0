@@ -1,0 +1,13 @@
+.center1 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #000;
+    padding: 20px;
+    }
+.minSize{
+    
+    width: 80vw !important;
+    max-width: 400px !important;
+}

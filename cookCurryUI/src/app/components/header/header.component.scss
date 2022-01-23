@@ -1,0 +1,33 @@
+// .navcss{
+//     background-color: #5e3dee;
+// }
+// .navbar{
+//     position: fixed;
+//     top :0;
+//     left :0;
+//     right: 0;
+//     z-index: 1;
+// }
+
+a{
+    color: rgb(222, 228, 228);
+}
+.active{
+    color: rgb(255, 255, 255);
+    border-bottom: 3px solid rgb(255, 255, 255);
+    padding-bottom: 3px;
+
+}
+.nav-link:hover{
+    color: rgb(252, 251, 250);
+    transform: scale(1.1);
+}
+.togButton{
+    background-color: whitesmoke;
+    color: #5e3dee;
+}
+.togButton:hover{
+    
+    background-color: rgb(255, 255, 255);
+    color:#5e3dee;
+}

@@ -1,0 +1,4 @@
+npm init
+npm i express pg
+ npm i -D nodemon
+ npm run start

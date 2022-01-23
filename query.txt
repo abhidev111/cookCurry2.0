@@ -1,0 +1,66 @@
+-- CREATE TABLE cuisine_type (
+-- cuisine_id int  PRIMARY KEY,
+-- 	cuisine_name varchar(50)
+-- );
+-- SELECT * FROM cuisine_type;
+-- insert into cuisine_type values (2,'SouthIndian'),(3,'NorthIndian');
+-- SELECT * FROM cuisine_type;
+
+-- CREATE TABLE recipe_table(
+-- recipe_id int PRIMARY KEY,
+-- 	recipe_name varchar(100) 
+-- );
+-- alter table recipe_table add  c_type int ;
+-- ALTER TABLE recipe_table ADD FOREIGN KEY (c_type) REFERENCES cuisine_type(cuisine_id);
+
+-- insert into recipe_table values 
+-- (1,'dosa',1),
+-- (2,'vadapav',3)
+-- ;
+
+-- select * from recipe_table;
+-- select rt.recipe_id, rt.recipe_name,ct.cuisine_name
+-- from recipe_table rt, cuisine_type ct
+-- where rt.c_type = ct.cuisine_id and ct.cuisine_name = 'SouthIndian';
+
+-- CREATE TABLE full_recipe_table (
+-- Srno int PRIMARY KEY ,
+-- 	RecipeName varchar(500),
+-- 	Ingredients text,
+-- 	PrepTimeInMins int,
+-- 	CookTimeInMins int,
+-- 	TotalTimeInMins int,
+-- 	Servings int,
+-- 	Cuisine varchar(100),
+-- 	Course varchar(100),
+-- 	Diet varchar(100),
+-- 	Instructions text,
+-- 	URL text
+-- )
+-- select * from full_recipe_table;
+-- COPY full_recipe_table FROM 'C:\Users\Abhishek K\Desktop\IndianFoodDatasetXLS1csv2.csv' WITH CSV HEADER ENCODING;
+--  copy full_recipe_table from 'C:\Users\Abhishek K\Desktop\IndianFoodDatasetXLS1csv2.csv' with delimiter ',' csv header encoding 'windows-1251';
+
+SELECT * FROM full_recipe_table;
+
+-- SELECT DISTINCT CUISINE FROM full_recipe_table;
+
+-- delete from full_recipe_table where instructions like '%?%'; 
+select * from full_recipe_table where ingredients like '%onion%' and ingredients like '%tomato%' order by length(ingredients) asc;
+
+-- delete from full_recipe_table where instructions like '%?%'; 
+select * from full_recipe_table where ingredients like '%onion%' and ingredients like '%tomato%' order by totaltimeinmins,length(ingredients) asc;
+
+-- delete from full_recipe_table where instructions like '%?%'; 
+select * from full_recipe_table where (ingredients like '%onion%' and ingredients like '%tomato%' and diet = 'Non Vegeterian' ) order by totaltimeinmins,length(ingredients) asc;
+
+update full_recipe_table set diet = 'Non Vegetarian' where diet = 'Non Vegeterian';
+select * from full_recipe_table where (ingredients like '%onion%' and ingredients like '%tomato%' and diet = 'Non Vegetarian' ) order by totaltimeinmins,length(ingredients) asc;
+
+select * from full_recipe_table where (ingredients like '%potato%' and ingredients like '%tomato%' and diet = 'Vegetarian' ) order by totaltimeinmins,length(ingredients) asc;
+
+
+create table ingredientsname(
+  ingredient_id serial  PRIMARY KEY,
+	ingredient_name varchar(100) 
+);

@@ -1,0 +1,70 @@
+// @import "~@ng-select/ng-select/themes/default.theme.css";
+// @import "node_modules/@ng-select/ng-select/themes/default.theme.css";
+
+mat-form-field {
+    width: 50%;
+  }
+
+
+  .spl{
+    border: 2px ridge rgba(174, 35, 233, 0.6);
+    border-radius: 5px;
+    margin: 5px;
+    padding: 3px;
+    
+  }
+  .spl:hover{
+    background-color: rgba(95, 3, 134, 0.6);
+    color :azure;
+    border: 3px ridge rgba(174, 35, 233, 0.6);
+  }
+
+  .card{
+    border-radius: 10px;
+    box-shadow: 0 0px 20px 0 rgba(0,0,0,0.2);
+    // background-color: rgba(97, 92, 92, 0.2);
+    transition: 0.3s;
+  }
+
+  .outerBox{
+    background-color: rgb(255, 255, 255);
+  }
+  .accordion-button{
+    background-color: rgba(128, 125, 125, 0.2);
+  }
+  .recipeContainer{
+    padding-bottom: 200px;
+  }
+
+  .search-btn{
+    
+    display: flex;
+    align-content: center;
+    border : 2px solid white;
+    border-radius: 35px;
+    padding: 15px 25px 15px 25px;
+    width: 250px;
+    color: #ffffff ;
+    background-color: #5e3dee;
+    
+}
+.search-btn:hover{
+    color: #5e3dee;
+    background-color: white;
+    border : 2px solid #5e3dee;
+}
+
+.contentCard{
+  min-height: 100vh;
+}
+
+mat-progress-spinner{
+  z-index:100;
+}
+.no_data_received{
+  font-size: 20px;
+  padding: 10px;
+}
+
+  
+
