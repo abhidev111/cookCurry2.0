@@ -25,6 +25,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { NetworkInterceptor } from './interceptors/network.interceptor';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
 
 
 // import{Matinput}
@@ -38,7 +39,8 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
     SearchByNameComponent,
     SearchByIngredientsComponent,
     DetailedRecipeComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    AddRecipeComponent
   ],
   imports: [
     BrowserModule,

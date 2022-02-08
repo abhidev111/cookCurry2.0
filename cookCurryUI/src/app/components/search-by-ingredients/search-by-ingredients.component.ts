@@ -55,14 +55,6 @@ export class SearchByIngredientsComponent implements OnInit {
       this.courseArr = data;
       console.log(this.courseArr);
     })
-
-    // await this.dataservice.getIngredientsforFilters().subscribe((data: ingredientsType[]) => {
-    //   console.log("---------igredients--------");
-    //   this.ingredientsArr = data;
-    //   console.log(this.ingredientsArr);
-    // })
-
-
   }
 
   getSelectedValue() {
@@ -87,9 +79,6 @@ export class SearchByIngredientsComponent implements OnInit {
       console.log(i)
     }
 
-
-
-
     this.dataservice.getPossibleRecipeNamegivenFilter(ingredientsArray, cuisineArray, dietArray, courseArray).subscribe((data: recipeDetails[]) => {
       console.log(data);
       this.recipeData = data;
@@ -100,6 +89,4 @@ export class SearchByIngredientsComponent implements OnInit {
     }
     )
   }
-
-
 }

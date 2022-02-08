@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DetailedRecipeComponent } from './components/detailed-recipe/detailed-recipe.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'searchByName', component: SearchByNameComponent },
   { path: 'searchByIngredients', component: SearchByIngredientsComponent },
   { path: 'detailedRecipe/:srNo', component: DetailedRecipeComponent },
+  { path: 'add-recipe', component: AddRecipeComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 

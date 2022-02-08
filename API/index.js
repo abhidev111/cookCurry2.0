@@ -12,29 +12,28 @@ app.listen(PORT, () => {
 })
 
 
-app.get("/getAll", async (req, res) => {
+// app.get("/getAll", async (req, res) => {
+//     try {
+//         const allRecipes = await pool.query("select * from full_recipe_table;");
+
+//         res.send(allRecipes)
+//     } catch (error) {
+
+//     }
+// })
+
+
+
+app.put("/addRecipe", async (req, res) => {
     try {
-        const allRecipes = await pool.query("select * from full_recipe_table;");
+        const { srno , recipename,ingredients, preptimeinmins, cooktimeinmins, totaltimeinmins, servings, instructions, url, image_links,recipediet, recipecourse,recipecuisine } = req.body;
+        
+        const new_recipe = await pool.query("INSERT INTO full_recipe_table (srno , recipename,ingredients, preptimeinmins, cooktimeinmins, totaltimeinmins, servings, instructions, url, image_links,recipediet, recipecourse,recipecuisine) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING *", [srno , recipename,ingredients, preptimeinmins, cooktimeinmins, totaltimeinmins, servings, instructions, url, image_links,recipediet, recipecourse,recipecuisine]);
 
-        res.send(allRecipes)
-    } catch (error) {
-
-    }
-})
-
-
-
-app.post("/addRecipe", async (req, res) => {
-    try {
-        const { recipe_name } = req.body;
-        const { c_type } = req.body;
-        const { recipe_id } = req.body;
-        const new_recipe = await pool.query("INSERT INTO recipe_table (recipe_id,recipe_name,c_type) VALUES ($1,$2,$3) RETURNING *", [recipe_id, recipe_name, c_type]);
-
-        console.log(recipe_name, c_type);
-        res.status(200);
-        res.send(new_recipe.rows);
-        // res.json(new_recipe);
+       
+        res.status(200).send(new_recipe.rows);
+    
+        
     } catch (error) {
         console.log(error.message);
     }
@@ -49,8 +48,9 @@ app.get("/allrecipeNames:data", async (req, res, err) => {
         let { data } = req.params;
         data = data.split(':');
         console.log("--->", data)
-
+        console.log(data[0],"---------------------")
         let recipeName = "%" + data[0].replace(/ /g, "%") + "%";
+        console.log(recipeName,"---------------------")
         let cuisineArr = data[1];
         let dietArr = data[2];
         let courseArr = data[3];
@@ -86,10 +86,14 @@ WHERE (ft.recipename ILIKE $1
 	   AND ft.recipecuisine=csnt.cuisineref
 	  );
         */ 
-
         const allrecipeNames = await pool.query("SELECT ft.srno,ft.recipename,ft.ingredients,ft.instructions,ft.url,ft.image_links,csnt.cuisinename,crst.coursename,dit.dietname FROM full_recipe_table AS ft, full_course_types AS crst, full_cuisine_types AS csnt, full_diet_types AS dit WHERE ( ft.recipediet=dit.dietref AND ft.recipecourse=crst.courseref AND ft.recipecuisine=csnt.cuisineref AND ft.recipename ILIKE $1 AND csnt.cuisinename ILIKE any($2)  AND dit.dietname ILIKE any($3) AND crst.coursename ILIKE any($4)  );", [recipeName, cuisineArr, dietArr, courseArr]);
         console.log(allrecipeNames)
         res.send(allrecipeNames.rows);
+        
+
+        // const allrecipeNames = await pool.query("SELECT * FROM FULL_TABLE_VIEW WHERE recipename ILIKE $1 AND cuisinename ILIKE any($2)  AND dietname ILIKE any($3) AND coursename ILIKE any($4)  );", [recipeName, cuisineArr, dietArr, courseArr]);
+        // console.log(allrecipeNames)
+        // res.send(allrecipeNames.rows);
     } catch (error) {
         console.log(err);
     }
@@ -107,24 +111,24 @@ app.get('/RecipeNamesDisplay', async (req, res) => {
     }
 });
 
-app.get('/recipeWithName:recipeName', async (req, res, err) => {
-    try {
-        let { recipeName } = req.params;
-        recipeName = recipeName.replace(/ /g, "%");
+// app.get('/recipeWithName:recipeName', async (req, res, err) => {
+//     try {
+//         let { recipeName } = req.params;
+//         recipeName = recipeName.replace(/ /g, "%");
        
-        const q = '%' + recipeName + '%'
-        console.log(q)
+//         const q = '%' + recipeName + '%'
+//         console.log(q)
        
-        const recipeDetails = await pool.query("select * from full_recipe_table_with_image where recipename ilike $1 order by recipename,ingredients asc;", [q]);
-        console.log(recipeDetails.rows)
-        res.send(recipeDetails.rows);
-    } catch (error) {
-        console.log(err)
-    }
+//         const recipeDetails = await pool.query("select * from full_recipe_table_with_image where recipename ilike $1 order by recipename,ingredients asc;", [q]);
+//         console.log(recipeDetails.rows)
+//         res.send(recipeDetails.rows);
+//     } catch (error) {
+//         console.log(err)
+//     }
 
 
 
-})
+// })
 
 //get all cuisines
 app.get('/getAllcuisines', async (req, res) => {

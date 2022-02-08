@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, lastValueFrom, Observable } from 'rxjs';
-// import {recipeName} from ',/models/model'
 
 import { map, startWith } from 'rxjs';
 import { cuisineType, recipeDetails } from 'src/app/models/model';
@@ -41,30 +40,17 @@ export class SearchByNameComponent implements OnInit {
     for (var i of this.names) {
       this.arr[this.names.indexOf(i)] = i.recipe_name;
     }
-    // for( let name in this.names){
-    //   this.arr[this.names.indexOf(name)] = this.names[name];
-    // }
+   
     console.log(this.arr)
-
-
-
-
-
     this.filteredOptions = this.mycontrol.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
     )
-
-
-  }
-
-
+}
   private _filter(value: string): String[] {
     const filterValue = value.toLowerCase();
     return this.arr.filter((option) => option.toLowerCase().includes(filterValue))
   }
-
-
   displayFn(subject: any) {
     return subject ? subject : undefined;
   }
@@ -91,24 +77,7 @@ export class SearchByNameComponent implements OnInit {
       console.log(this.courseArr);
     })
   }
-  // getRecipeDet() {
-  //   // console.log("***************",this.recipeName,"***************")
-  //   this.dataservice.getRecipeWithName(this.recipeName).subscribe(data => {
-  //     console.log(data);
-  //     this.recipeData = data;
-  //     this.no_data_received = false;
-  //     this.got_data$.next(false);
-  //     if (this.recipeData.length == 0) {
-  //       console.log("no data ")
-  //       this.no_data_received = true;
-  //     }
-  //     else {
-  //       this.got_data$.next(true);
-  //     }
-
-  //   });
-  // }
-
+  
   getSelectedValue() {
 
     let cuisineArray = [];
@@ -142,7 +111,4 @@ export class SearchByNameComponent implements OnInit {
     }
     )
   }
-
-
-
 }

@@ -1,35 +1,31 @@
+<nav class="navbar navbar-expand-md navbar-expand-lg " style="background-color: #5E3DEE;">
+  <div class="container-fluid ">
+    <a class="navbar-brand " href="#"><b><i>cookCurry</i></b></a>
+    <button class="togButton navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
 
-<nav class="navbar navbar-expand-md navbar-expand-lg " style="background-color: #5E3DEE;"> 
-    <div class="container-fluid " >
-      <a class="navbar-brand " href="#"><b><i>cookCurry</i></b></a>
-      <button class="togButton navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        
-        <mat-icon>view_headline</mat-icon>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 p-2">
-          <li class="nav-item m-2">
-            <a class="nav-link"  routerLink="searchByName" routerLinkActive="active">Search by recipe name</a>
-          </li>
-          <li class="nav-item m-2">
-            <a class="nav-link" routerLink="searchByIngredients" routerLinkActive="active">Search by ingredients</a>
-          </li>
-          <li class="nav-item m-2">
-            <a class="nav-link" routerLink="#" routerLinkActive="active">How it works?</a>
-          </li>
-         
-          
-        </ul>
-        
-      </div>
+      <mat-icon>view_headline</mat-icon>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 p-2">
+        <li class="nav-item m-2">
+          <a class="nav-link" routerLink="searchByName" routerLinkActive="active">Search by recipe name</a>
+        </li>
+        <li class="nav-item m-2">
+          <a class="nav-link" routerLink="searchByIngredients" routerLinkActive="active">Search by ingredients</a>
+        </li>
+        <li class="nav-item m-2">
+          <a class="nav-link" routerLink="#" routerLinkActive="active">How it works?</a>
+        </li>
+      </ul>
     </div>
-    
-  </nav>
-  <mat-progress-bar *ngIf="loading$ | async" [mode] ="'indeterminate'" color="warn">
+  </div>
+</nav>
+<mat-progress-bar *ngIf="loading$ | async" [mode]="'indeterminate'" color="warn">
+</mat-progress-bar>
 
-  </mat-progress-bar>
-  
-  
+
 
 <!-- <nav class="navbar navbar-light" style="background-color: #d3d2c7;">
   <div class="container-fluid">

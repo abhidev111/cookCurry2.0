@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="card">
+        <form #addRecipeForm = "ngForm" (submit)="add(addRecipeForm)">
+            <label for="no" #no>no</label>
+            <input type="number" class="form-control">
+
+            <label for="recipename" >recipename</label>
+            <input type="text" #recipename  class="form-control">
+
+            <label for="ingredients" >ingredients</label>
+            <input type="text" #ingredients class="form-control">
+
+            <label for="instructions">instructions</label>
+            <input type="text" #instructions class="form-control">
+
+            <label for="url">Reference url</label>
+            <input type="text" #url class="form-control">
+
+            <label for="image_links">image_links</label>
+            <input type="text" #image_links class="form-control">
+
+            <label for="cuisinename">cuisinename</label>
+            <input type="text" #cuisinename class="form-control">
+
+            <label for="coursename">coursename</label>
+            <input type="text" #coursename class="form-control">
+
+            <label for="dietname">dietname</label>
+            <input type="text" #dietname class="form-control">
+
+            <button class="btn btn-success" type="submit">Add recipe</button>
+        </form>
+    </div>
+</div>
