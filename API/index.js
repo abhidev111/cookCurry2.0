@@ -86,7 +86,7 @@ WHERE (ft.recipename ILIKE $1
 	   AND ft.recipecuisine=csnt.cuisineref
 	  );
         */ 
-        const allrecipeNames = await pool.query("SELECT ft.srno,ft.recipename,ft.ingredients,ft.instructions,ft.url,ft.image_links,csnt.cuisinename,crst.coursename,dit.dietname FROM full_recipe_table AS ft, full_course_types AS crst, full_cuisine_types AS csnt, full_diet_types AS dit WHERE ( ft.recipediet=dit.dietref AND ft.recipecourse=crst.courseref AND ft.recipecuisine=csnt.cuisineref AND ft.recipename ILIKE $1 AND csnt.cuisinename ILIKE any($2)  AND dit.dietname ILIKE any($3) AND crst.coursename ILIKE any($4)  );", [recipeName, cuisineArr, dietArr, courseArr]);
+        const allrecipeNames = await pool.query("SELECT ft.srno,ft.recipename,ft.ingredients,ft.instructions,ft.preptimeinmins,ft.cooktimeinmins,ft.servings,ft.url,ft.image_links,csnt.cuisinename,crst.coursename,dit.dietname FROM full_recipe_table AS ft, full_course_types AS crst, full_cuisine_types AS csnt, full_diet_types AS dit WHERE ( ft.recipediet=dit.dietref AND ft.recipecourse=crst.courseref AND ft.recipecuisine=csnt.cuisineref AND ft.recipename ILIKE $1 AND csnt.cuisinename ILIKE any($2)  AND dit.dietname ILIKE any($3) AND crst.coursename ILIKE any($4)  );", [recipeName, cuisineArr, dietArr, courseArr]);
         console.log(allrecipeNames)
         res.send(allrecipeNames.rows);
         
@@ -237,6 +237,17 @@ app.get('/getDetailedRecipeWithSrNo/:srno', async (req, res) => {
         res.send(detailRecipe.rows[0]);
     } catch (error) {
         console.log(error);
+    }
+})
+
+app.put('/reportRecipe', async(req , res)=>{
+    try {
+        const {srno} = req.body;
+        console.log(srno)
+        await pool.query("UPDATE full_recipe_table SET usr_report = usr_report + 1 WHERE srno = $1",[srno]);
+        res.send("REPORTED!!")
+    } catch (error) {
+        console.log(error)
     }
 })
 

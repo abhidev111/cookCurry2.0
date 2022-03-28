@@ -30,6 +30,7 @@ export class SearchByNameComponent implements OnInit {
   selectedDiet: any = [];
   selectedCourse: any = [];
 
+  reportSatus:any ;
   constructor(private dataservice: DataserviceService) { }
 
   async ngOnInit(): Promise<void> {
@@ -107,8 +108,14 @@ export class SearchByNameComponent implements OnInit {
       else {
         this.got_data$.next(true);
       }
-
     }
     )
+  }
+
+  report_recipe(srno:any){
+    this.dataservice.reportRecipeWithSrno(srno).subscribe((status:any)=>{
+      this.reportSatus = status
+      console.log(this.reportSatus)
+    })
   }
 }

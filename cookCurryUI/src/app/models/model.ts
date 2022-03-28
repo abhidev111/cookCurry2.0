@@ -26,6 +26,7 @@ export interface recipeDetails{
     ingredients:string,
     preptimeinmins:number,
     cooktimeinmins:number,
+    servings:number,
     cuisinename:string,
     coursename:string,
     dietname:string,

@@ -70,5 +70,12 @@ export class DataserviceService {
     console.log(url)
     return this.http.get<recipeDetails>(url);
   }
+  reportRecipeWithSrno(srno:any){
+    let srno_ = parseInt(srno,10);
+    let url = 'http://localhost:3000/reportRecipe/';
+    return this.http.put(url,{
+      srno : srno_
+    })
+  }
   
 }

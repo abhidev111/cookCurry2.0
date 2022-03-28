@@ -73,8 +73,14 @@
                 height: auto;
                 width: auto\9;
                 margin:20px 20px;" *ngFor="let recipe of recipeData; let i = index">
-
+                    
                     <img class="card-img-top" [src]="recipe.image_links" alt="Card image cap">
+                    <div class="txtOnImg">
+                        <div class="row">
+                    <div class="col"> <mat-icon></mat-icon> Cook Time :{{recipe.cooktimeinmins}}</div>
+                    <div class="col"><mat-icon></mat-icon> Servings :{{recipe.servings}}</div>
+                </div>
+                </div>
                     <div class="card-body">
                         <h2 class="card-title">{{recipe.recipename}}</h2>
                         <p class="card-text">
@@ -123,8 +129,9 @@
 
                     </ul>
                     <div class="card-body">
-
+                        
                         <a [href]="recipe.url" class="card-link" target="_blank">more info</a>
+                        <button class="btn-danger" style="float: right;" (click)="report_recipe(recipe.srno)">report</button>
                     </div>
                 </div>
             </div>
